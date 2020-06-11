@@ -9,6 +9,37 @@ const presidentsUSA789 = [
   'William Henry Harrison'
 ];
 
+const presidentsUSA = [
+  {
+    firstName:'John',
+    lastName: 'Tyler',
+    presidentIndex: 10
+  },
+  {
+    firstName:'James K.',
+    lastName: 'Polk',
+    presidentIndex: 11
+  },
+  {
+    firstName:'Zachary',
+    lastName: 'Taylor',
+    presidentIndex: 12
+  },
+  {
+    firstName:'Millard',
+    lastName: 'Fillmore',
+    presidentIndex: 13
+  },
+  {
+    firstName:'Franklin',
+    lastName: 'Pierce',
+    presidentIndex: 14
+  },
+];
+
+const formatPresident = (name, lastName, index) => {
+  return `${name}, ${lastName}, ${index}th`;
+};
 
 ReactDOM.render(
   <div>
@@ -24,6 +55,13 @@ ReactDOM.render(
     </ol>
     <ul>
       {presidentsUSA789.map(president => <li key={president}>{president}</li>)}
+    </ul>
+    <ul>
+      {presidentsUSA.map(president => president.presidentIndex % 2 !== 0 ? (
+        <li key={president.presidentIndex}>
+          {formatPresident(president.firstName, president.lastName, president.presidentIndex)}
+        </li>
+      ) : null)}
     </ul>
   </div>,
   document.getElementById('root')
