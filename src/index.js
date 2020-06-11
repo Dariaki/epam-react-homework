@@ -56,7 +56,7 @@ ReactDOM.render(
     <ul>
       {presidentsUSA789.map(president => <li key={president}>{president}</li>)}
     </ul>
-    <ul>
+    <ul style={{backgroundColor: '#ddd', paddingTop: '1em', paddingBottom: '1em', fontWeight: 'bold'}}>
       {presidentsUSA.map(president => president.presidentIndex % 2 !== 0 ? (
         <li key={president.presidentIndex}>
           {formatPresident(president.firstName, president.lastName, president.presidentIndex)}
