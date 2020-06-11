@@ -10,6 +10,11 @@ ReactDOM.render(
       <li>John Adams</li>
       <li>Thomas Jefferson</li>
     </ul>
+    <ol start="4">
+      <li>James Madison</li>
+      <li>James Monroe</li>
+      <li>John Quincy Adams</li>
+    </ol>
   </div>,
   document.getElementById('root')
 );
