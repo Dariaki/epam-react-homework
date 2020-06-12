@@ -54,11 +54,11 @@ const formatDate = (d) => {
   const fTime = d.toLocaleTimeString().split(' ')[0];
 
   let fDayTime;
-  if (d.getHours() > 3 && d.getHours() < 12) {
+  if (d.getHours() > 5 && d.getHours() < 11) {
     fDayTime = 'Утро';
-  } else if (d.getHours() < 18) {
+  } else if (d.getHours() < 17) {
     fDayTime = 'День';
-  } else if (d.getHours() < 23) {
+  } else if (d.getHours() < 21) {
     fDayTime = 'Вечер';
   } else {
     fDayTime = 'Ночь';
@@ -100,7 +100,7 @@ ReactDOM.render(
 
           return (
             <li key={item.id} style={isOutDated()}>
-              <a href='#' target="_blank"  style={isOutDated()}>{item.title}</a>
+              <a href={`https://www.facebook.com/events/${item.id}/`} target="_blank" style={isOutDated()}>{item.title}</a>
               <p>{`${formatDate(date)}`}</p>
               <p>{item.place}</p>
             </li>
