@@ -67,6 +67,43 @@ const formatDate = (d) => {
 };
 
 
+let formState = {
+  name: '',
+  password: '',
+  tariff: 'basic',
+  newsletter: true
+};
+
+const changeHandler = (event) => {
+  formState = {
+    ...formState,
+    [event.target.name]: event.target.value
+  };
+
+};
+
+const toggleCheck = (event) => {
+  formState = {
+    ...formState,
+    newsletter: event.target.checked
+  };
+
+};
+
+const submitHandler = (event) => {
+  event.preventDefault();
+
+  fetch('https://postman-echo.com/post', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(formState)
+  })
+    .then(response => response.json())
+    .then(result => console.log(result))
+
+};
+
+
 ReactDOM.render(
   <div>
     <ul>
@@ -108,6 +145,26 @@ ReactDOM.render(
         }
       )}
     </ul>
+    <form style={{padding: '0 35px'}} onSubmit={submitHandler}>
+        <label htmlFor='name'>Name:</label>
+        <input id='name' name='name' autoFocus={true} placeholder='John Doe' required={true} onChange={changeHandler}/>
+
+        <label htmlFor='password'>Password:</label>
+        <input id='password' type='password' name='password' minLength='4' autoComplete={''}  onChange={changeHandler}/>
+
+        <label htmlFor='basic-tariff'>
+          <input id='basic-tariff' type='radio' value='basic' name='tariff' defaultChecked={true} onChange={changeHandler}/>Basic Tariff
+        </label>
+        <label htmlFor='premium-tariff'>
+          <input id="premium-tariff" type='radio' value='premium' name='tariff' onChange={changeHandler}/>Premium Tariff
+        </label>
+
+        <label htmlFor="subscribe">
+        <input id="subscribe" type='checkbox' name='newsletter' defaultChecked={true} onChange={toggleCheck}/>I want to receive news on my email
+        </label>
+
+        <button type='submit'>Buy</button>
+    </form>
   </div>,
   document.getElementById('root')
 );
